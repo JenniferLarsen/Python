@@ -14,13 +14,23 @@ def hourly_employee_input(name: str, hours_worked: int, hourly_pay_rate: float):
             raise ValueError("Hours worked and Hourly pay rate must be positive numbers.")
         else:
             total_pay =int(hours_worked) * float(hourly_pay_rate)
-            return(print(f'{name} worked {hours_worked} hours at ${hourly_pay_rate :.2f} per hour, for a total of ${total_pay :.2f}.'))
+            return(f'{name} worked {hours_worked} hours at ${hourly_pay_rate :.2f} per hour, for a total of ${total_pay :.2f}.')
     except ValueError:
         print("Hours worked and Hourly pay rate must be positive numbers.")
     except TypeError:
         print("Hours worked and Hourly pay rate must be positive numbers.")
 
+def weekly_pay(hours_worked: float, hourly_pay_rate: float): 
+    weekly_pay = hours_worked * hourly_pay_rate
+    return(weekly_pay)
 
+if __name__ == '__main__':
+    try:  # check for ValueError
+        display_string = hourly_employee_input()  # function call, store in a variable
+    except ValueError as err:
+        print("ValueError encountered! ")
+    else:
+        print(display_string)  # print the result of the function
 hourly_employee_input('Jennifer', 40, 35.00)
 
 hourly_employee_input('Jennifer', -40, -35.00)
