@@ -8,31 +8,25 @@ The input is an integer representing hours worked, and a float representing the 
 The output is a summary of the input with the name, hours worked, hourly pay rate and total pay.
 """
 
-def hourly_employee_input(name: str, hours_worked: int, hourly_pay_rate: float):
-    try:
-        if int(hours_worked) < 0 or float(hourly_pay_rate) < 0:
-            raise ValueError("Hours worked and Hourly pay rate must be positive numbers.")
-        else:
-            total_pay =int(hours_worked) * float(hourly_pay_rate)
-            return(f'{name} worked {hours_worked} hours at ${hourly_pay_rate :.2f} per hour, for a total of ${total_pay :.2f}.')
-    except ValueError:
-        print("Hours worked and Hourly pay rate must be positive numbers.")
-    except TypeError:
-        print("Hours worked and Hourly pay rate must be positive numbers.")
 
 def weekly_pay(hours_worked: float, hourly_pay_rate: float): 
     weekly_pay = hours_worked * hourly_pay_rate
-    return(weekly_pay)
+    return weekly_pay
+
+def hourly_employee_input(name: str, hours_worked: int, hourly_pay_rate: float):
+    try:
+        if hours_worked < 0 or hourly_pay_rate < 0:
+            raise ValueError("Hours worked and Hourly pay rate must be positive numbers.")
+        else:
+            weekly_payment = weekly_pay(hours_worked, hourly_pay_rate)
+            return f'{name} worked {hours_worked} hours at ${hourly_pay_rate:.2f} per hour, for a total of ${weekly_payment:.2f} per week.'
+    except ValueError:
+        print("Hours worked and Hourly pay rate must be positive numbers.")
 
 if __name__ == '__main__':
-    try:  # check for ValueError
-        display_string = hourly_employee_input()  # function call, store in a variable
+    try:
+        display_string = hourly_employee_input('Jennifer', 40, 35.00)  # function call, store in a variable
     except ValueError as err:
         print("ValueError encountered! ")
     else:
         print(display_string)  # print the result of the function
-hourly_employee_input('Jennifer', 40, 35.00)
-
-hourly_employee_input('Jennifer', -40, -35.00)
-
-hourly_employee_input(22, 'J', 'L')
